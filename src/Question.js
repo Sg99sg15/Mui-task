@@ -1,23 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {  Accordion, AccordionDetails, AccordionSummary, FormControlLabel,  Radio, RadioGroup, Box,Typography,Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import arrayOfObjects from './Array';
+
+function Question(name) {
+
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (open) => (event, isExpanded) => {
+    setExpanded(isExpanded ? open : false);
+  };
 
 
-
-function Question() {
     return (
-        <>
-             <Accordion>
+      
+        arrayOfObjects.map(({ qNo, ques }, index) =>
+        (
+          <>
+            <Accordion expanded={expanded === index} onChange={handleChange(index)}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Question 1:</Typography>
+                <Typography>Question {user.qNoNo}:</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography>
-                  What are multiple-choice questions?
+                  {ques}
                 </Typography>
                 <RadioGroup>
                   <Box maxWidth='lg' mt={5} display='flex' justifyContent='space-around'>
@@ -41,7 +51,10 @@ function Question() {
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>
-        </>
+          </>
+        )
+        )
+      
     )
 }
 
