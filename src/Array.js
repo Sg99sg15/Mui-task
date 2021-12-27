@@ -1,27 +1,223 @@
-
-
 const arrayOfObjects = [
-  { qNo: 1, ques: "Right way to write Name?", options: [{ answer: "shaShank gUpta", isCorrect: false }, { answer: "Shashank Gupta", isCorrect: true }, { answer: "shaShank gUPta", isCorrect: false }, { answer: "ShaShank gUpta", isCorrect: false }] },
-  { qNo: 2, ques: "How old am i?", options: [{ answer:"24", isCorrect: false }, {answer: "23", isCorrect: false }, { answer: "22", isCorrect: true }, {answer: "21", isCorrect: false}] },
-  { qNo: 3, ques: "Which is my favorite color?", options: [{ answer:"Yellow", isCorrect: false }, {answer: "Blue", isCorrect: false }, { answer: "Red", isCorrect: false }, {answer: "Black", isCorrect: true}] },
-  { qNo: 4, ques: "Which pet animal does i like?", options: [{ answer:"Dog", isCorrect: true }, {answer: "Cat", isCorrect: false }, { answer: "Rabbit", isCorrect: false }, {answer: "Rat", isCorrect: false}] },
-  { qNo: 5, ques: "Which is my favorite dog?", options: [{ answer:"Bull-Dog", isCorrect: false }, {answer: "German-Shepherd", isCorrect: true }, { answer: "Labrador-Retriever", isCorrect: false }, {answer: "Siberian-Husky", isCorrect: false}] },
-  { qNo: 6, ques: "asdfasdfasdfadsdfe?", options: [{ answer: "shaShadsfnk gUpta", isCorrect: false }, { answer: "Shasasdfhank Gupta", isCorrect: true }, { answer: "shasdfaShank gUPta", isCorrect: false }, { answer: "ShaShank gUpta", isCorrect: false }] },
-  { qNo: 7, ques: "How old am i?", options: [{ answer:"24", isCorrect: false }, {answer: "23", isCorrect: false }, { answer: "22", isCorrect: true }, {answer: "21", isCorrect: false}] },
-  { qNo: 8, ques: "Which is my favorite color?", options: [{ answer:"Yellow", isCorrect: false }, {answer: "Blue", isCorrect: false }, { answer: "Red", isCorrect: false }, {answer: "Black", isCorrect: true}] },
-  { qNo: 9, ques: "Which pet animal does i like?", options: [{ answer:"Dog", isCorrect: true }, {answer: "Cat", isCorrect: false }, { answer: "Rabbit", isCorrect: false }, {answer: "Rat", isCorrect: false}] },
-  { qNo: 10, ques: "Which is my favorite dog?", options: [{ answer:"Bull-Dog", isCorrect: false }, {answer: "German-Shepherd", isCorrect: true }, { answer: "Labrador-Retriever", isCorrect: false }, {answer: "Siberian-Husky", isCorrect: false}] },
-  { qNo: 11, ques: "Right way to write Name?", options: [{ answer: "shaShank gUpta", isCorrect: false }, { answer: "Shashank Gupta", isCorrect: true }, { answer: "shaShank gUPta", isCorrect: false }, { answer: "ShaShank gUpta", isCorrect: false }] },
-  { qNo: 12, ques: "How old am i?", options: [{ answer:"24", isCorrect: false }, {answer: "23", isCorrect: false }, { answer: "22", isCorrect: true }, {answer: "21", isCorrect: false}] },
-  { qNo: 13, ques: "Which is my favorite color?", options: [{ answer:"Yellow", isCorrect: false }, {answer: "Blue", isCorrect: false }, { answer: "Red", isCorrect: false }, {answer: "Black", isCorrect: true}] },
-  { qNo: 14, ques: "Which pet animal does i like?", options: [{ answer:"Dog", isCorrect: true }, {answer: "Cat", isCorrect: false }, { answer: "Rabbit", isCorrect: false }, {answer: "Rat", isCorrect: false}] },
-  { qNo: 15, ques: "Which is my favorite dog?", options: [{ answer:"Bull-Dog", isCorrect: false }, {answer: "German-Shepherd", isCorrect: true }, { answer: "Labrador-Retriever", isCorrect: false }, {answer: "Siberian-Husky", isCorrect: false}] },
-  { qNo: 16, ques: "Right way to write Name?", options: [{ answer: "shaShank gUpta", isCorrect: false }, { answer: "Shashank Gupta", isCorrect: true }, { answer: "shaShank gUPta", isCorrect: false }, { answer: "ShaShank gUpta", isCorrect: false }] },
-  { qNo: 17, ques: "How old am i?", options: [{ answer:"24", isCorrect: false }, {answer: "23", isCorrect: false }, { answer: "22", isCorrect: true }, {answer: "21", isCorrect: false}] },
-  { qNo: 18, ques: "Which is my favorite color?", options: [{ answer:"Yellow", isCorrect: false }, {answer: "Blue", isCorrect: false }, { answer: "Red", isCorrect: false }, {answer: "Black", isCorrect: true}] },
-  { qNo: 19, ques: "Which pet animal does i like?", options: [{ answer:"Dog", isCorrect: true }, {answer: "Cat", isCorrect: false }, { answer: "Rabbit", isCorrect: false }, {answer: "Rat", isCorrect: false}] },
-  { qNo: 20, ques: "Which is my favorite dog?", options: [{ answer:"Bull-Dog", isCorrect: false }, {answer: "German-Shepherd", isCorrect: true }, { answer: "Labrador-Retriever", isCorrect: false }, {answer: "Siberian-Husky", isCorrect: false}] },
- 
-
+  {
+    qNo: 1,
+    marks: 5,
+    ques: "Right way to write Name?    [5 Marks]",
+    options: [
+      { answer: "shaSadfhank gUpta", isCorrect: false },
+      { answer: "Shashank Gupta", isCorrect: true },
+      { answer: "shaSadfhank gUPta", isCorrect: false },
+      { answer: "ShaShasdfank gUpta", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 2,
+    marks: 3,
+    ques: "How old am i?   [3 Marks]",
+    options: [
+      { answer: "24", isCorrect: false },
+      { answer: "23", isCorrect: false },
+      { answer: "22", isCorrect: true },
+      { answer: "21", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 3,
+    marks: 5,
+    ques: "Which is my favorite color?   [5 Marks]",
+    options: [
+      { answer: "Yellow", isCorrect: false },
+      { answer: "Blue", isCorrect: false },
+      { answer: "Red", isCorrect: false },
+      { answer: "Black", isCorrect: true },
+    ],
+  },
+  {
+    qNo: 4,
+    marks: 10,
+    ques: "Which pet animal does i like?   [10 Marks]",
+    options: [
+      { answer: "Dog", isCorrect: true },
+      { answer: "Cat", isCorrect: false },
+      { answer: "Rabbit", isCorrect: false },
+      { answer: "Rat", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 5,
+    marks: 10,
+    ques: "Which is my favorite dog?   [10 Marks]",
+    options: [
+      { answer: "Bull-Dog", isCorrect: false },
+      { answer: "German-Shepherd", isCorrect: true },
+      { answer: "Labrador-Retriever", isCorrect: false },
+      { answer: "Siberian-Husky", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 6,
+    marks: 15,
+    ques: "Which one is correct team name in NBA?    [15 Marks]",
+    options: [
+      { answer: "New York Bulls", isCorrect: false },
+      { answer: "Los Angeles Kings", isCorrect: false },
+      { answer: "Golden State Warriros", isCorrect: false },
+      { answer: "Huston Rocket", isCorrect: true },
+    ],
+  },
+  {
+    qNo: 7,
+    marks: 10,
+    ques: "What is the scientific name of a butterfly?   [15 Marks]",
+    options: [
+      { answer: "Apis", isCorrect: false },
+      { answer: "Coleoptera", isCorrect: false },
+      { answer: "Formicidae", isCorrect: true },
+      { answer: "Rhopalocera", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 8,
+    marks: 3,
+    ques: "The next number in the sequence 1, 3, 6, 10, is:...   [3 Marks]",
+    options: [
+      { answer: "12", isCorrect: false },
+      { answer: "13", isCorrect: false },
+      { answer: "14", isCorrect: false },
+      { answer: "15", isCorrect: true },
+    ],
+  },
+  {
+    qNo: 9,
+    marks: 10,
+    ques: "What is the capital of Spain?   [10 Marks]",
+    options: [
+      { answer: "Berlin", isCorrect: false },
+      { answer: "Buenos Aires", isCorrect: true },
+      { answer: "Madrid", isCorrect: false },
+      { answer: "San Juan", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 10,
+    marks: 15, 
+    ques: "How hot is the surface of the sun?    [15 Marks]",
+    options: [
+      { answer: "1,233 K", isCorrect: true },
+      { answer: "5778 K ", isCorrect: false },
+      { answer: "12,130 K ", isCorrect: false },
+      { answer: "101,300 K", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 11,
+    marks: 5,
+    ques: " Which of the following is not a type in JSON?    [5 Marks]",
+    options: [
+      { answer: "date", isCorrect: true },
+      { answer: "object", isCorrect: false },
+      { answer: "array", isCorrect: false },
+      { answer: "string", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 12,
+    marks: 5,
+    ques: "What extension in used to save a JSON file?   [5 Marks]",
+    options: [
+      { answer: ".js", isCorrect: false },
+      { answer: ".javaN", isCorrect: false },
+      { answer: ".json", isCorrect: true },
+      { answer: ".on", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 13,
+    marks: 3,
+    ques: "Which car manufacturer was the first to win 100 F1 races?   [3 Marks]",
+    options: [
+      { answer: "Ferrari", isCorrect: true },
+      { answer: "Nissan", isCorrect: false },
+      { answer: "Ford", isCorrect: false },
+      { answer: "BMW", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 14,
+    marks: 10,
+    ques: "In the professional era which woman has won the most titles at Wimbledon [singles, doubles and mixed]?    [10 Marks]",
+    options: [
+      { answer: "Venus", isCorrect: false },
+      { answer: "Hingis", isCorrect: false },
+      { answer: "Martina Navratilova", isCorrect: true },
+      { answer: "Waynetta", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 15,
+    marks: 10,
+    ques: "How many times have Liverpool been relegated from the top flight of English football?   [10 Marks]",
+    options: [
+      { answer: "Four", isCorrect: false },
+      { answer: "Three", isCorrect: true },
+      { answer: "Two", isCorrect: false },
+      { answer: "First", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 16,
+    marks: 5,
+    ques: "What is the following devices do you have   [5 Marks]",
+    options: [
+      { answer: "Smartphone", isCorrect: true },
+      { answer: "Smart TV", isCorrect: false },
+      { answer: "Laptop", isCorrect: false },
+      { answer: "Smart Watch", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 17,
+    marks: 10,
+    ques: "What will you be have for breakfast?    [10 Marks]",
+    options: [
+      { answer: "Tea", isCorrect: false },
+      { answer: "Milk", isCorrect: true },
+      { answer: "Coffee", isCorrect: false },
+      { answer: "Juice", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 18,
+    marks: 3,
+    ques: "If a = 1 and b = 2, what is a + b?    [3 Marks]",
+    options: [
+      { answer: "1", isCorrect: false },
+      { answer: "3", isCorrect: true },
+      { answer: "4", isCorrect: false },
+      { answer: "2", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 19,
+    marks: 5,
+    ques: "JSON elements are separated by    [5 Marks]",
+    options: [
+      { answer: "semi-colon", isCorrect: false },
+      { answer: "line break", isCorrect: false },
+      { answer: "comma", isCorrect: true },
+      { answer: "white space", isCorrect: false },
+    ],
+  },
+  {
+    qNo: 20,
+    marks: 10,
+    ques: "Which of these is supported as a JSON Value type?   [10 Marks]",
+    options: [
+      { answer: "Infiniti", isCorrect: false },
+      { answer: "Null", isCorrect: true },
+      { answer: "Undefined", isCorrect: false },
+      { answer: "NaN", isCorrect: false },
+    ],
+  },
 ];
-export default arrayOfObjects
+export default arrayOfObjects;
