@@ -2,6 +2,7 @@ const arrayOfObjects = [
   {
     qNo: 1,
     marks: 5,
+    negative: 2,
     ques: "Right way to write Name?    [5 Marks]",
     options: [
       { answer: "shaSadfhank gUpta", isCorrect: false },
@@ -13,6 +14,7 @@ const arrayOfObjects = [
   {
     qNo: 2,
     marks: 3,
+    negative: 1,
     ques: "How old am i?   [3 Marks]",
     options: [
       { answer: "24", isCorrect: false },
@@ -24,6 +26,7 @@ const arrayOfObjects = [
   {
     qNo: 3,
     marks: 5,
+    negative: 2,
     ques: "Which is my favorite color?   [5 Marks]",
     options: [
       { answer: "Yellow", isCorrect: false },
@@ -35,6 +38,7 @@ const arrayOfObjects = [
   {
     qNo: 4,
     marks: 10,
+    negative: 4,
     ques: "Which pet animal does i like?   [10 Marks]",
     options: [
       { answer: "Dog", isCorrect: true },
@@ -46,6 +50,7 @@ const arrayOfObjects = [
   {
     qNo: 5,
     marks: 10,
+    negative: 4,
     ques: "Which is my favorite dog?   [10 Marks]",
     options: [
       { answer: "Bull-Dog", isCorrect: false },
@@ -57,6 +62,7 @@ const arrayOfObjects = [
   {
     qNo: 6,
     marks: 15,
+    negative: 5,
     ques: "Which one is correct team name in NBA?    [15 Marks]",
     options: [
       { answer: "New York Bulls", isCorrect: false },
@@ -68,6 +74,7 @@ const arrayOfObjects = [
   {
     qNo: 7,
     marks: 10,
+    negative: 4,
     ques: "What is the scientific name of a butterfly?   [15 Marks]",
     options: [
       { answer: "Apis", isCorrect: false },
@@ -79,6 +86,7 @@ const arrayOfObjects = [
   {
     qNo: 8,
     marks: 3,
+    negative: 1,
     ques: "The next number in the sequence 1, 3, 6, 10, is:...   [3 Marks]",
     options: [
       { answer: "12", isCorrect: false },
@@ -90,6 +98,7 @@ const arrayOfObjects = [
   {
     qNo: 9,
     marks: 10,
+    negative: 4,
     ques: "What is the capital of Spain?   [10 Marks]",
     options: [
       { answer: "Berlin", isCorrect: false },
@@ -101,6 +110,7 @@ const arrayOfObjects = [
   {
     qNo: 10,
     marks: 15, 
+    negative: 5,
     ques: "How hot is the surface of the sun?    [15 Marks]",
     options: [
       { answer: "1,233 K", isCorrect: true },
@@ -112,6 +122,7 @@ const arrayOfObjects = [
   {
     qNo: 11,
     marks: 5,
+    negative: 2,
     ques: " Which of the following is not a type in JSON?    [5 Marks]",
     options: [
       { answer: "date", isCorrect: true },
@@ -123,6 +134,7 @@ const arrayOfObjects = [
   {
     qNo: 12,
     marks: 5,
+    negative: 2,
     ques: "What extension in used to save a JSON file?   [5 Marks]",
     options: [
       { answer: ".js", isCorrect: false },
@@ -134,6 +146,7 @@ const arrayOfObjects = [
   {
     qNo: 13,
     marks: 3,
+    negative: 1,
     ques: "Which car manufacturer was the first to win 100 F1 races?   [3 Marks]",
     options: [
       { answer: "Ferrari", isCorrect: true },
@@ -145,6 +158,7 @@ const arrayOfObjects = [
   {
     qNo: 14,
     marks: 10,
+    negative: 4,
     ques: "In the professional era which woman has won the most titles at Wimbledon [singles, doubles and mixed]?    [10 Marks]",
     options: [
       { answer: "Venus", isCorrect: false },
@@ -156,6 +170,7 @@ const arrayOfObjects = [
   {
     qNo: 15,
     marks: 10,
+    negative: 4,
     ques: "How many times have Liverpool been relegated from the top flight of English football?   [10 Marks]",
     options: [
       { answer: "Four", isCorrect: false },
@@ -167,6 +182,7 @@ const arrayOfObjects = [
   {
     qNo: 16,
     marks: 5,
+    negative: 2,
     ques: "What is the following devices do you have   [5 Marks]",
     options: [
       { answer: "Smartphone", isCorrect: true },
@@ -178,6 +194,7 @@ const arrayOfObjects = [
   {
     qNo: 17,
     marks: 10,
+    negative: 4,
     ques: "What will you be have for breakfast?    [10 Marks]",
     options: [
       { answer: "Tea", isCorrect: false },
@@ -189,6 +206,7 @@ const arrayOfObjects = [
   {
     qNo: 18,
     marks: 3,
+    negative: 1,
     ques: "If a = 1 and b = 2, what is a + b?    [3 Marks]",
     options: [
       { answer: "1", isCorrect: false },
@@ -200,6 +218,7 @@ const arrayOfObjects = [
   {
     qNo: 19,
     marks: 5,
+    negative: 2,
     ques: "JSON elements are separated by    [5 Marks]",
     options: [
       { answer: "semi-colon", isCorrect: false },
@@ -211,6 +230,7 @@ const arrayOfObjects = [
   {
     qNo: 20,
     marks: 10,
+    negative: 4,
     ques: "Which of these is supported as a JSON Value type?   [10 Marks]",
     options: [
       { answer: "Infiniti", isCorrect: false },

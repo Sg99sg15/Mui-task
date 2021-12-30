@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme";
 import {
@@ -22,31 +22,74 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import arrayOfObjects from "./Array";
-import { makeStyles } from "@mui/styles";
-
-const useStyle = makeStyles({
-
-});
+import Result from "./Result";
 
 export default function App() {
-  const classes = useStyle();
   const [expanded, setExpanded] = useState(false);
+  const [choose, setChoose] = useState([]);
+  const [right, setRight] = useState(0);
+  const [wrong, setWrong] = useState(0);
+  const [posi, setPosi] = useState(0);
+  const [nega, setNega] = useState(0);
+  const [score, setScore] = useState(0);
+  const [wQues, setWQues] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState([]);
 
+  // Accordian expand
   const handleChange = (open) => (event, isExpanded) => {
     setExpanded(isExpanded ? open : false);
   };
 
-  const [score, setScore] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState([]);
-  const handleAnswerOptionClick = (isCorrect, id, marks) => {
+  // click Answer
+  const handleAnswerOptionClick = (isCorrect, id, marks, negative, answer) => {
     if (isCorrect) {
       setScore(score + marks);
+      setRight(right + 1);
+      setPosi(posi + marks);
+    } else {
+      setScore(score - negative);
+      setWrong(wrong + 1);
+      setNega(nega + negative);
+    }
+    if (isCorrect === false) {
+      setWQues([...wQues, id]);
     }
     setSelectedAnswer([...selectedAnswer, id]);
+    // console.log(answer);
+    setChoose((old) => [...old, { choose: answer }]);
   };
- 
 
-  const [users, setUsers] = useState(arrayOfObjects.slice(0, arrayOfObjects.length));
+  // Use effect
+  // useEffect(() => {
+    // console.log(wQues);
+    // console.log(choose);
+    // console.log(selectedAnswer)
+  // }, [choose]);
+
+  // Next Page
+  const next = () => {
+    setPageNumber(pageNumber + 1);
+  };
+
+  // Back Page
+  const back = () => {
+    setPageNumber(pageNumber - 1);
+  };
+
+  // Result page
+  const [showResult, setshowResult] = useState(false);
+  const result = () => {
+    return setshowResult(true);
+  };
+
+  // Total Marks [reduce method]
+  const totalMarks = arrayOfObjects.reduce(
+    (prevM, currM) => prevM + currM.marks,
+    0
+  );
+
+  // Render all questions [slice and map] 
+  const [users] = useState(arrayOfObjects.slice(0, arrayOfObjects.length));
   const [pageNumber, setPageNumber] = useState(0);
   const userPerPage = 5;
   const pageVisited = pageNumber * userPerPage;
@@ -79,16 +122,16 @@ export default function App() {
                   {user.options.map((item, index) => {
                     return (
                       <Button
-                      style={{border:'3px solid', margin:'5px'}}
-                      size="small"
+                        style={{ border: "3px solid", margin: "5px" }}
+                        size="small"
                         variant="outlined"
                         color={
                           selectedAnswer.includes(user.qNo) && item.isCorrect
                             ? "success"
                             : selectedAnswer.includes(user.qNo) &&
-                              item.isCorrect == false
+                              item.isCorrect === false
                             ? "error"
-                            : "primary"
+                            : "secondary"
                         }
                         key={index}
                       >
@@ -101,7 +144,9 @@ export default function App() {
                                 handleAnswerOptionClick(
                                   item.isCorrect,
                                   user.qNo,
-                                  user.marks
+                                  user.marks,
+                                  user.negative,
+                                  item.answer
                                 )
                               }
                               color="secondary"
@@ -120,23 +165,17 @@ export default function App() {
       );
     });
 
-  // NExt
-  const next = () => {
-    setPageNumber(pageNumber + 1);
-  };
-  const reload = () => {
-    setPageNumber(0);
-  };
-  const back = () => {
-    setPageNumber(pageNumber - 1);
-  };
-
   return (
     <ThemeProvider theme={theme}>
       <Box mb={5}>
         <AppBar position="static" color="secondary">
           <Toolbar>
-            <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              onClick={() => window.location.reload()}
+              component="div"
+              style={{ flexGrow: 1 }}
+            >
               Home
             </Typography>
             <Typography variant="h6" mr={5}>
@@ -148,52 +187,65 @@ export default function App() {
           </Toolbar>
         </AppBar>
 
-        <Container maxWidth="md">
-          <Paper mt={5} elevation={5} component={Box} p={2}>
-            <Box
-              elevation={3}
-              component={Paper}
-              maxWidth="lg"
-              p={1}
-              textAlign="center"
-            >
-              <Typography variant="h5">Quiz</Typography>
-            </Box>
-            {displayQues}
-            <Box display="flex" style={{ justifyContent: "flex-end" }} p={2}>
-              {pageNumber >= 1 ? (
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={back}
-                  color="secondary" 
-                >
-                  Back
-                </Button>
-              ) : null}
-              {pageNumber < ((arrayOfObjects.length/userPerPage)-1) ? (
-                <Button
-                  variant="contained"
-                  disabled={selectedAnswer.length < 5*(pageNumber +1)}
-                  size="large"
-                  onClick={next}
-                  color="secondary"
-                >
-                  Next
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={reload}
-                  color="secondary"
-                >
-                  Back to First Page
-                </Button>
-              )}
-            </Box>
-          </Paper>
-        </Container>
+        {showResult ? (
+          <Result
+            totalNoQuestion={arrayOfObjects.length}
+            score={score}
+            totalMarks={totalMarks}
+            right={right}
+            wrong={wrong}
+            negative={nega}
+            positive={posi}
+          />
+        ) : (
+          <Container maxWidth="md">
+            <Paper mt={5} elevation={5} component={Box} p={2}>
+              <Box
+                elevation={3}
+                component={Paper}
+                maxWidth="lg"
+                p={1}
+                textAlign="center"
+              >
+                <Typography variant="h5">Quiz</Typography>
+              </Box>
+              {displayQues}
+              <Box display="flex" style={{ justifyContent: "flex-end" }} p={2}>
+                {pageNumber >= 1 ? (
+                  <Button
+                    variant="contained"
+                    size="large"
+                    onClick={back}
+                    color="secondary"
+                  >
+                    Back
+                  </Button>
+                ) : null}
+                {pageNumber < arrayOfObjects.length / userPerPage - 1 ? (
+                  <Button
+                    variant="contained"
+                    disabled={selectedAnswer.length < 5 * (pageNumber + 1)}
+                    size="large"
+                    onClick={next}
+                    color="secondary"
+                  >
+                    Next
+                  </Button>
+                ) : pageNumber < arrayOfObjects.length / userPerPage ? (
+                  <Button
+                    variant="contained"
+                    disabled={selectedAnswer.length < 5 * (pageNumber + 1)}
+                    size="large"
+                    onClick={result}
+                    color="secondary"
+                  >
+                    Result
+                  </Button>
+                ) : null}
+              </Box>
+            </Paper>
+          </Container>
+        )}
       </Box>
     </ThemeProvider>
   );
