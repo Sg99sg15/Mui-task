@@ -10,6 +10,12 @@ import {
   IconButton,
   Container,
   Paper,
+  TableCell,
+  TableRow,
+  TableHead,
+  Table,
+  TableContainer,
+  TableBody,
 } from "@mui/material";
 import {
   Accordion,
@@ -22,17 +28,17 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import arrayOfObjects from "./Array";
-import Result from "./Result";
+import { GridExpandMoreIcon } from "@mui/x-data-grid";
 
 export default function App() {
   const [expanded, setExpanded] = useState(false);
+  const [showResult, setshowResult] = useState(false);
   const [choose, setChoose] = useState([]);
   const [right, setRight] = useState(0);
   const [wrong, setWrong] = useState(0);
   const [posi, setPosi] = useState(0);
   const [nega, setNega] = useState(0);
   const [score, setScore] = useState(0);
-  const [wQues, setWQues] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState([]);
 
   // Accordian expand
@@ -40,32 +46,92 @@ export default function App() {
     setExpanded(isExpanded ? open : false);
   };
 
-  // click Answer
-  const handleAnswerOptionClick = (isCorrect, id, marks, negative, answer) => {
+  // click to show Answer
+  const handleAnswerOptionClick = (isCorrect, id, answer, all) => {
     if (isCorrect) {
-      setScore(score + marks);
+      setScore(score + all.marks);
       setRight(right + 1);
-      setPosi(posi + marks);
-    } else {
-      setScore(score - negative);
+      setPosi(posi + all.marks);
+    } 
+    else {
+      setScore(score - all.negative);
       setWrong(wrong + 1);
-      setNega(nega + negative);
-    }
-    if (isCorrect === false) {
-      setWQues([...wQues, id]);
+      setNega(nega + all.negative);
+  
+      let rAns = all.options.filter(function (element) {
+        return (element.isCorrect == true);
+    }).map(function(el) {
+    return el.answer;
+    })
+      setChoose([
+        ...choose,
+        { qn: id, question: all.ques, ans: answer, right: rAns}
+      ]);
     }
     setSelectedAnswer([...selectedAnswer, id]);
-    // console.log(answer);
-    setChoose((old) => [...old, { choose: answer }]);
   };
+  const ans = choose.map((user, index) => (
+    <>
+      <Accordion
+        expanded={expanded === index}
+        onChange={handleChange(index)}
+        key={index}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="pan1a-content"
+          id="pan1a-header"
+        >
+          <Typography>Question {user.qn}:</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>{user.question}</Typography>
+          <Box
+            maxWidth="lg"
+            mt={5}
+            display="flex"
+            justifyContent="space-evenly"
+            alignItems="center"
+          >
+            <Typography>Your selected answer :</Typography>
+            <RadioGroup name="same">
+              <Button
+                style={{ border: "3px solid", margin: "5px" }}
+                size="small"
+                variant="outlined"
+                color="error"
+                key={index}
+              >
+                <FormControlLabel
+                  value={user.ans}
+                  control={<Radio disabled color="secondary" />}
+                  label={user.ans}
+                />
+              </Button>
+            </RadioGroup>
+            <Typography>Right answer is:</Typography>
+            <RadioGroup name="same">
+              <Button
+                style={{ border: "3px solid", margin: "5px" }}
+                size="small"
+                variant="outlined"
+                color="success"
+                key={index}
+              >
+                <FormControlLabel
+                  value={user.right}
+                  control={<Radio disabled color="secondary" />}
+                  label={user.right}
+                />
+              </Button>
+            </RadioGroup>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+    </>
+  ));
 
-  // Use effect
-  // useEffect(() => {
-    // console.log(wQues);
-    // console.log(choose);
-    // console.log(selectedAnswer)
-  // }, [choose]);
-
+ 
   // Next Page
   const next = () => {
     setPageNumber(pageNumber + 1);
@@ -77,7 +143,6 @@ export default function App() {
   };
 
   // Result page
-  const [showResult, setshowResult] = useState(false);
   const result = () => {
     return setshowResult(true);
   };
@@ -88,7 +153,7 @@ export default function App() {
     0
   );
 
-  // Render all questions [slice and map] 
+  // Render all questions [slice and map]
   const [users] = useState(arrayOfObjects.slice(0, arrayOfObjects.length));
   const [pageNumber, setPageNumber] = useState(0);
   const userPerPage = 5;
@@ -144,9 +209,8 @@ export default function App() {
                                 handleAnswerOptionClick(
                                   item.isCorrect,
                                   user.qNo,
-                                  user.marks,
-                                  user.negative,
-                                  item.answer
+                                  item.answer,
+                                  user
                                 )
                               }
                               color="secondary"
@@ -188,15 +252,55 @@ export default function App() {
         </AppBar>
 
         {showResult ? (
-          <Result
-            totalNoQuestion={arrayOfObjects.length}
-            score={score}
-            totalMarks={totalMarks}
-            right={right}
-            wrong={wrong}
-            negative={nega}
-            positive={posi}
-          />
+          <>
+            <Container
+              sx={{ marginTop: "5%", padding: "2%" }}
+              variant="outlined"
+              component={Paper}
+            >
+              <TableContainer component={Paper}>
+                <Table
+                  sx={{ minWidth: 650 }}
+                  size="small"
+                  aria-label="a dense table"
+                >
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">
+                        Total Number of Questions
+                      </TableCell>
+                      <TableCell align="center">Right Answer</TableCell>
+                      <TableCell align="center">Wrong Answer</TableCell>
+                      <TableCell align="center">Postive Marks</TableCell>
+                      <TableCell align="center">Negative Marks</TableCell>
+                      <TableCell align="center">Marks Obtained</TableCell>
+                      <TableCell align="center">Total Marks</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell align="center">
+                        {arrayOfObjects.length}
+                      </TableCell>
+                      <TableCell align="center">{right}</TableCell>
+                      <TableCell align="center">{wrong}</TableCell>
+                      <TableCell align="center">{posi}</TableCell>
+                      <TableCell align="center">{nega}</TableCell>
+                      <TableCell align="center">{score}</TableCell>
+                      <TableCell align="center">{totalMarks}</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Container>
+            <Container
+              sx={{ marginTop: "2%", padding: "2%" }}
+              variant="outlined"
+              component={Paper}
+            >
+              {ans}
+            </Container>
+          </>
         ) : (
           <Container maxWidth="md">
             <Paper mt={5} elevation={5} component={Box} p={2}>
